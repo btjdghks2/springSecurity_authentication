@@ -1,8 +1,6 @@
 package com.securityEx.securityExProject.domain;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -26,6 +24,28 @@ public class Member {
     @OneToMany(mappedBy = "Member",cascade = CascadeType.ALL)
     private List<Post> post = new ArrayList<>();
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    @Builder
+    public Member(String username, String password, String email, Role role) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
+
+    public Member update(String username, String password) {
+        this.username = username;
+        this.password = password;
+
+        return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
+    }
 
 
 }

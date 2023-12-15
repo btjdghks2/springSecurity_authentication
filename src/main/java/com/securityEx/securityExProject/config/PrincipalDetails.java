@@ -14,7 +14,12 @@ public class PrincipalDetails implements  UserDetails {
     private Member member;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Collection<GrantedAuthority> collections = new ArrayList<>();
+        collections.add(() -> {
+            return member.getRole().name();
+        });
+
+        return collections;
 
     }
 
