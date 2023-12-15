@@ -31,27 +31,11 @@ public class SecurityConfig {
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll()
                 .build();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
-    @Bean
-    public AuthenticationManager authenticationManager() {
-        return new ProviderManager(customAuthenticationProvider());
-    }
-
-    @Bean
-    public CustomAuthenticationProvider customAuthenticationProvider() {
-        return new CustomAuthenticationProvider(BCryptPasswordEncoder());
-    }
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }
