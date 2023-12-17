@@ -36,16 +36,11 @@ public class Member {
         this.role = role;
     }
 
-    public Member update(String username, String password) {
-        this.username = username;
-        this.password = password;
-
-        return this;
-    }
-
     public String getRoleKey() {
         return this.role.getKey();
     }
 
 
+    public Member orElseThrow(Object o) {
+    }
 }
