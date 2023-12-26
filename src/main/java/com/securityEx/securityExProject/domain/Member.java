@@ -10,22 +10,26 @@ import java.util.List;
 @Getter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Member {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String username;
 
+    @Column
     private String password;
 
+    @Column
     private String email;
 
-    @OneToMany(mappedBy = "Member",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<Post> post = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Role role;
 
     @Builder
@@ -36,11 +40,4 @@ public class Member {
         this.role = role;
     }
 
-    public String getRoleKey() {
-        return this.role.getKey();
-    }
-
-
-    public Member orElseThrow(Object o) {
-    }
 }

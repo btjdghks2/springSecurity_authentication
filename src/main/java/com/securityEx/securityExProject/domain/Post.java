@@ -1,20 +1,22 @@
 package com.securityEx.securityExProject.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
 @Getter
 public class Post {
 
+    @Id
+    @GeneratedValue
     private Long id;
 
+    @Column
     private String title;
 
+    @Column
     private String content;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 }

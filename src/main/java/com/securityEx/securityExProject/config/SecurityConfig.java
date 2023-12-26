@@ -53,10 +53,7 @@ public class SecurityConfig {
         return null;
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new CustomUserDetailsService();
-    }
+
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
